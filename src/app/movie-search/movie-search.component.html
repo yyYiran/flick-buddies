@@ -1,0 +1,16 @@
+<div id="search-component">
+  <input #searchBox (input)="search(searchBox.value)">
+
+  <!-- <p>bcisdbciu</p> -->
+  <ul>
+    <li *ngFor="let movie of movies$ | async" id="movie">
+      <img [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path">
+      <div id="movieInfo">
+        <h4>{{movie.title}}</h4>
+        <span>{{movie.release_date}}</span>
+        <p>{{movie.overview}}</p>
+      </div>
+      
+    </li>
+  </ul>
+</div>
