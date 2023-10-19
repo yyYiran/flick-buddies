@@ -1,3 +1,14 @@
+/* .modal{
+  z-index: 2;
+}
+
+#search-component{
+  position: absolute;
+  left: 0;
+  top: 0; 
+  z-index: -1;
+} */
+
 input{
   border: black solid 1px;
   padding: .5rem;
@@ -8,7 +19,6 @@ input{
 input:focus {
   outline: blue auto 1px;
 }
-
 ul{
   /* display: grid;
   grid-template-columns: repeat(4, 1fr);

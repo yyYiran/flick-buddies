@@ -1,5 +1,10 @@
-<div id="search-component">
-  <input #searchBox (input)="search(searchBox.value)">
+
+ 
+  <div id="search-component">
+    <modal class="modal" #modal [modalConfig]="modalConfig" tabindex="-1">
+      <!--  body of the modal  -->
+    </modal>
+    <input #searchBox (input)="search(searchBox.value)">
 
   <!-- <p>bcisdbciu</p> -->
   <ul>
@@ -9,8 +14,13 @@
         <h4>{{movie.title}}</h4>
         <span>{{movie.release_date}}</span>
         <p>{{movie.overview}}</p>
+        <button (click)="openModal()">open modal</button>
       </div>
-      
+     
     </li>
   </ul>
 </div>
+
+
+
+

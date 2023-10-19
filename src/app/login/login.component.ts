@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { catchError, of, throwError } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,15 +25,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: "",
-      password: ""
+      username: "peter",
+      password: "Peter123!"
     })
     
     // this.authService.register({username: "!!!Boubdusvbsd", password:"AliceLove&Bob1212"});
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log("auth.serice.error");
+    console.log("login: auth.serice.error");
 
     // console.log(this.form["username"].errors);
     // TODO: display different messages based on differnt error
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       username: this.getField("username"),
       password: this.getField("password"),
     }).subscribe(res => {
-      console.log("signin: " + res);
+      // console.log("signin: " + res);
       localStorage.setItem("token", res["access_token"]);
       this.router.navigateByUrl("/home");
       // TODO: router navigate to main page
