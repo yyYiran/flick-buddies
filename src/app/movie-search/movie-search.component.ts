@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MovieService } from '../service/movie.service';
 import { Movie } from '../model/movie';
 import { Observable, Subject, catchError, debounceTime, distinctUntilChanged, map, of, switchMap, take, throwError } from 'rxjs';
@@ -6,7 +6,8 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import jwt_decode from "jwt-decode";
-import { ModalComponent } from '../modal/modal.component';
+import { ModalService } from '../service/modal.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-search',
@@ -16,21 +17,28 @@ import { ModalComponent } from '../modal/modal.component';
 export class MovieSearchComponent implements OnInit {
   public movies$!: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
+  reviewForm!: FormGroup;
+  gfg = 5;
 
-  @ViewChild('modal') private modalComponent!: ModalComponent
-  public modalConfig = {
-    modalTitle: "nini",
-    dismissButtonLabel: "Cancel",
-    closeButtonLabel: "Save",
-    onDismiss: ()=>true,
+  get rating(){
+    return this.reviewForm.get("rating")?.value
   }
   
   constructor(
     private authService: AuthService, 
     private movieService: MovieService, 
+    private modalService: ModalService,
+    private formBuilder: FormBuilder,
     private router: Router) {}
     
     ngOnInit(): void {
+      this.reviewForm = this.formBuilder.group({
+        rating: null,
+        review: null,
+        status: 0
+      })
+      console.log("this.reviewForm.value: ");
+      console.log(this.reviewForm.value);
       console.log(this.authService.currentUser())
       // console.log(this.authService.currentUser);
       this.movies$ = this.movieService.searchByTitle("1984");
@@ -57,8 +65,24 @@ export class MovieSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
-  async openModal() {
-    return await this.modalComponent.open()
+  openModal(modalTemplate: TemplateRef<any>) {
+    this.modalService
+      .open(modalTemplate, { size: 'sm', title: 'Add this book', 
+      submitButtonLabel: "Save", closeButtonLabel: "Cancel",
+      onSubmit: this.onSubmit, onClose: this.onClose})
+      .subscribe((action) => {
+        console.log('modalAction', action);
+      });
+  }
+
+  onClose(){
+    console.log("close modal");
+    return true;
+  }
+
+  onSubmit(){
+    console.log(this.reviewForm.controls)
+    return true;
   }
 
   private handleError(error: HttpErrorResponse) {

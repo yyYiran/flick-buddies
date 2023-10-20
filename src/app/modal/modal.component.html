@@ -1,25 +1,15 @@
-<ng-template #modal let-modal>
-  <section><div class="modal-header">
-    <h3 class="modal-title">{{ modalConfig.modalTitle }}</h3>
+<div class="modal {{ modalConfig.size }}" >
+  <div class="modal-header">
+    {{ modalConfig.title }}
+    <span class="modal-close" (click)="close()">✕</span>
   </div>
-  <div class="modal-body">
+  <div class="modal-content">
     <ng-content></ng-content>
   </div>
   <div class="modal-footer">
-    <button type="button"
-            class="btn btn-outline-secondary"
-            (click)="dismiss()"
-            *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()"
-            [disabled]="modalConfig.disableDismissButton !== undefined && modalConfig.disableDismissButton()">
-      {{ modalConfig.dismissButtonLabel }}
-    </button>
-    <button type="button"
-            class="btn btn-outline-primary"
-            (click)="close()"
-            *ngIf="modalConfig.hideCloseButton === undefined || !modalConfig.hideCloseButton()"
-            [disabled]="modalConfig.disableCloseButton !== undefined && modalConfig.disableCloseButton()">
-      {{ modalConfig.closeButtonLabel }}
-    </button>
-  </div></section>
-  
-</ng-template>
+    <button (click)="close()">{{ modalConfig.closeButtonLabel }}</button>
+    <button (click)="submit()">{{ modalConfig.submitButtonLabel }}</button>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="close()"></div>

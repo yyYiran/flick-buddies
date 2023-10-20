@@ -8,9 +8,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MovieService {
-  private apiUrl = `${environment.apiUrl}/movie`
+  private apiUrl = `${environment.apiUrl}/movie`;
   
-
   constructor(private http: HttpClient) { }
   
   public searchByTitle(query: string): Observable<Movie[]> {

@@ -1,33 +1,34 @@
-
-import { Component, Injectable, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
-import { ModalConfig } from '../model/modal.config'
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap'
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { ModalConfig } from '../model/modal.config';
 
 @Component({
   selector: 'modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.css'],
 })
-@Injectable()
-export class ModalComponent implements OnInit {
-  @Input() public modalConfig!: ModalConfig
-  @ViewChild('modal') private modalContent!: TemplateRef<ModalComponent>
-  private modalRef!: NgbModalRef
+export class ModalComponent {
+  @Input() modalConfig!: ModalConfig;
 
-  constructor(private modalService: NgbModal) { }
+  @Output() closeEvent = new EventEmitter();
+  @Output() submitEvent = new EventEmitter();
 
-  ngOnInit(): void { }
+  constructor(private elementRef: ElementRef) {}
 
-  open() {
-    this.modalRef = this.modalService.open(this.modalContent,  { ariaLabelledBy: 'modal-basic-title' });
-    this.modalRef.result.then()
+  close(): void {
+    this.modalConfig.onClose();
+    this.elementRef.nativeElement.remove();
+    this.closeEvent.emit();
   }
 
-  close() {
-    this.modalRef.close()
-  }
-
-  dismiss() {
-    this.modalRef.dismiss()
+  submit(): void {
+    this.modalConfig.onSubmit();
+    this.elementRef.nativeElement.remove();
+    this.submitEvent.emit();
   }
 }

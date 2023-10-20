@@ -1,13 +1,12 @@
 export interface ModalConfig {
-  modalTitle: string
-  dismissButtonLabel?: string
+  size: string,
+  title: string,
+  submitButtonLabel?: string
   closeButtonLabel?: string
-  shouldClose?(): Promise<boolean> | boolean
-  shouldDismiss?(): Promise<boolean> | boolean
-  onClose?(): Promise<boolean> | boolean
-  onDismiss?(): Promise<boolean> | boolean
-  disableCloseButton?(): boolean
-  disableDismissButton?(): boolean
-  hideCloseButton?(): boolean
-  hideDismissButton?(): boolean
+  onClose(): Promise<boolean> | boolean
+  onSubmit(): Promise<boolean> | boolean
+  // disableCloseButton?(): boolean
+  // disableSubmitButton?(): boolean
+  // hideCloseButton?(): boolean
+  // hideSubmitButton?(): boolean
 }

@@ -1,14 +1,19 @@
-/* .modal{
-  z-index: 2;
-}
+/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
 
 #search-component{
+  display: flex;
+  flex-direction: column;
   position: absolute;
+  height: 100%;
+  top: 0;
   left: 0;
-  top: 0; 
   z-index: -1;
-} */
+}
 
+.form-group{
+  
+  
+}
 input{
   border: black solid 1px;
   padding: .5rem;
@@ -20,6 +25,7 @@ input:focus {
   outline: blue auto 1px;
 }
 ul{
+  
   /* display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;  */

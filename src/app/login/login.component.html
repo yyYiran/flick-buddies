@@ -1,26 +1,28 @@
+<div id="container">
 
-<form [formGroup]="loginForm">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" class="form-control"/>
-        <!-- <div *ngIf="form.username.errors" class="invalid-feedback">
-            <div *ngIf="form.username.errors.required">Username is required</div>
-        </div> -->
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control"/>
-        <!-- <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
-            <div *ngIf="form.password.errors.required">Password is required</div>
-        </div> -->
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary" (click)="onSignin()">
-            <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
-            Sign in
-        </button>
-        <button class="btn" (click)="onSignup()">
-          Sign up
-      </button>
-    </div>
-</form>
+    <form [formGroup]="loginForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" formControlName="username" class="form-control"/>
+            <!-- <div *ngIf="form.username.errors" class="invalid-feedback">
+                <div *ngIf="form.username.errors.required">Username is required</div>
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" class="form-control"/>
+            <!-- <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                <div *ngIf="form.password.errors.required">Password is required</div>
+            </div> -->
+        </div>
+        <div class="form-group btn-group">
+            <button class="btn btn-primary" (click)="onSignin()">
+                <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+                Sign in
+            </button>
+            <button class="btn btn-outline-primary" (click)="onSignup()">
+              Sign up
+          </button>
+        </div>
+    </form>
+</div>
