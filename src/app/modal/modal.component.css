@@ -1,4 +1,4 @@
-/* @import url(); */
+/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
 
 .modal-backdrop {
   width: 100%;
@@ -18,10 +18,10 @@
 .modal {
   z-index: 3;
   position: fixed;
-  left: 30%;
-  top: 30%;
-  transform: translate(-30%, -30%);
-  width: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
   height: auto;
   border: olive 1px solid;
   background-color: white;
@@ -42,7 +42,7 @@
 
 .modal-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .modal-close {

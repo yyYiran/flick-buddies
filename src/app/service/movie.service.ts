@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode } from '@ang
 import { Movie } from '../model/movie';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Review } from '../model/review';
+import { ReviewRequest } from '../model/review.request';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,28 @@ export class MovieService {
   private apiUrl = `${environment.apiUrl}/movie`;
   
   constructor(private http: HttpClient) { }
+
+  public addMovie(movie: Movie):Observable<Movie>{
+    console.log("add movie called");
+    console.log(movie);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("token")}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.post<Movie>(this.apiUrl, movie, requestOptions);
+  }
+
+  public addReview(request: ReviewRequest): Observable<Review>{
+    console.log("add review called with request: ");
+    console.log(request);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("token")}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.post<Review>(`${this.apiUrl}/${request.movieId}/review`, request, requestOptions);
+  }
   
   public searchByTitle(query: string): Observable<Movie[]> {
     console.log("searchByTitle called")

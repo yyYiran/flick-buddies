@@ -1,15 +1,17 @@
-<div class="modal {{ modalConfig.size }}" >
-  <div class="modal-header">
-    {{ modalConfig.title }}
-    <span class="modal-close" (click)="close()">✕</span>
+<ng-template #modal>
+  <div class="modal {{ modalConfig.size }}" >
+    <h4 class="modal-header">
+      {{ modalConfig.title }}
+      <span class="modal-close" (click)="dismiss()">✕</span>
+    </h4>
+    <div class="modal-content">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+      <button (click)="dismiss()">{{ modalConfig.closeButtonLabel }}</button>
+      <!-- <button (click)="close()">{{ modalConfig.submitButtonLabel }}</button> -->
+    </div>
   </div>
-  <div class="modal-content">
-    <ng-content></ng-content>
-  </div>
-  <div class="modal-footer">
-    <button (click)="close()">{{ modalConfig.closeButtonLabel }}</button>
-    <button (click)="submit()">{{ modalConfig.submitButtonLabel }}</button>
-  </div>
-</div>
-
-<div class="modal-backdrop" (click)="close()"></div>
+  
+  <div class="modal-backdrop" (click)="dismiss()"></div>
+</ng-template>

@@ -1,4 +1,4 @@
-/* @import '~bootstrap/dist/css/bootstrap.min.css'; */
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 #search-component{
   display: flex;
@@ -10,10 +10,20 @@
   z-index: -1;
 }
 
-.form-group{
-  
-  
+form{
+  display: flex;
+  flex-direction: column;
 }
+
+.button-group{
+  display: flex;
+  justify-content: flex-end;
+}
+button[type="submit"] {
+  /* position: absolute; */
+  /* right: 0; */
+}
+
 input{
   border: black solid 1px;
   padding: .5rem;
@@ -29,6 +39,10 @@ ul{
   /* display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;  */
+}
+
+.alert{
+  color: red;
 }
 
 #movie{

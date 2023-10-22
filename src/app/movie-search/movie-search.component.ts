@@ -6,8 +6,11 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import jwt_decode from "jwt-decode";
-import { ModalService } from '../service/modal.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Review } from '../model/review';
+import { ModalComponent } from '../modal/modal.component';
+import { ModalConfig } from '../model/modal.config';
+import { ReviewRequest } from '../model/review.request';
 
 @Component({
   selector: 'app-movie-search',
@@ -17,28 +20,39 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class MovieSearchComponent implements OnInit {
   public movies$!: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
-  reviewForm!: FormGroup;
+  public myReview: Review = {
+    rating: null,
+    review: null,
+  }
+
+  @ViewChild('modal') private modalComponent!: ModalComponent;
+  public modalConfig: ModalConfig = {
+    size: 'sm',
+    title: 'Hello',
+    // submitButtonLabel: "Save",
+    closeButtonLabel: "Cancel",
+  }
   gfg = 5;
 
-  get rating(){
-    return this.reviewForm.get("rating")?.value
-  }
+  
   
   constructor(
     private authService: AuthService, 
-    private movieService: MovieService, 
-    private modalService: ModalService,
+    private movieService: MovieService,
     private formBuilder: FormBuilder,
     private router: Router) {}
     
+    currentMovie!: Movie|null
+    
+
     ngOnInit(): void {
-      this.reviewForm = this.formBuilder.group({
-        rating: null,
-        review: null,
-        status: 0
-      })
-      console.log("this.reviewForm.value: ");
-      console.log(this.reviewForm.value);
+      // this.reviewForm = this.formBuilder.group({
+      //   rating: [null],
+      //   review: [null],
+      //   status: [0]
+      // });
+      // console.log("this.reviewForm.value: ");
+      // console.log(this.reviewForm.value);
       console.log(this.authService.currentUser())
       // console.log(this.authService.currentUser);
       this.movies$ = this.movieService.searchByTitle("1984");
@@ -65,40 +79,84 @@ export class MovieSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
-  openModal(modalTemplate: TemplateRef<any>) {
-    this.modalService
-      .open(modalTemplate, { size: 'sm', title: 'Add this book', 
-      submitButtonLabel: "Save", closeButtonLabel: "Cancel",
-      onSubmit: this.onSubmit, onClose: this.onClose})
-      .subscribe((action) => {
-        console.log('modalAction', action);
-      });
+  async openModal(m: Movie) {
+    this.modalConfig.title = `Review ${m.title}`;
+    this.currentMovie = m; 
+    return await this.modalComponent.open()
   }
 
-  onClose(){
-    console.log("close modal");
-    return true;
-  }
+  
 
   onSubmit(){
-    console.log(this.reviewForm.controls)
-    return true;
+    console.log(this.currentMovie)
+    if (this.currentMovie == null || this.myReview.rating == null || this.myReview.review == null){
+      console.error("You cannot submit!");
+      this.modalComponent.close();
+      return;
+    }
+
+    var request: ReviewRequest = {
+      username: this.authService.currentUser(),
+      movieId: this.currentMovie.movie_code,
+      rating: this.myReview.rating,
+      review: this.myReview.review,
+    }
+
+    this.movieService.addMovie(this.currentMovie).pipe(catchError((err ) => {
+      this.handleError(err)
+      return of()
+    })).subscribe((res) => {
+      console.log("successfully added movie");
+      console.log(res);
+    
+      console.log(request)
+    
+      this.movieService.addReview(request).pipe(catchError((err ) => {
+        this.handleError(err)
+        return of()
+      })).subscribe((res) => {
+        console.log("successfully added review");
+        console.log(res);
+      });
+    
+    });
+    
+
+    // console.log(this.myReview);
+    
+    // Add this review
+    
+
+    
+
+    this.reset()
+    return this.modalComponent.close()
   }
 
+  private reset(){
+    this.currentMovie = null;
+    this.myReview.rating = null;
+    this.myReview.review = null;
+  }
+
+
   private handleError(error: HttpErrorResponse) {
-    console.log("auth.serice.error");
+    console.log("movie.search.error");
 
     // console.log(this.form["username"].errors);
     // TODO: display different messages based on differnt error
     // Hidden field
     if (error.status == HttpStatusCode.Unauthorized){
       console.error("Unauthorized: ", error);
-      this.router.navigateByUrl("");
+      alert("Your session expired. Please login. ")
+      setTimeout(()=>{this.router.navigateByUrl("");}, 200);
+      this.modalComponent.close()
     } else if (error.status == HttpStatusCode.Forbidden){
       console.error("Forbidden: ", error);
       alert("Your session expired. Please login. ")
-      setTimeout(()=>{this.router.navigateByUrl("");}, 500);
-    }
+      setTimeout(()=>{this.router.navigateByUrl("");}, 200);
+      this.modalComponent.close()
+    } 
     else {
       console.error(
         `Backend returned code ${error.status}, body was: `, error);
