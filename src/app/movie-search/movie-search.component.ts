@@ -20,6 +20,7 @@ import { ReviewRequest } from '../model/review.request';
 export class MovieSearchComponent implements OnInit {
   public movies$!: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
+  currentMovie!: Movie|null
   public myReview: Review = {
     rating: null,
     review: null,
@@ -42,7 +43,7 @@ export class MovieSearchComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router) {}
     
-    currentMovie!: Movie|null
+    
     
 
     ngOnInit(): void {
@@ -80,9 +81,10 @@ export class MovieSearchComponent implements OnInit {
   }
 
   async openModal(m: Movie) {
+    console.log(m)
     this.modalConfig.title = `Review ${m.title}`;
     this.currentMovie = m; 
-    return await this.modalComponent.open()
+    this.modalComponent.open();
   }
 
   
