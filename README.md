@@ -18,3 +18,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 - RESTful API: Communication between the frontend and backend is achieved through RESTful APIs. Source of movie data is [TMDB API](https://developer.themoviedb.org/docs/getting-started)
 - Database: Movie and user data are stored and managed in MySQL
 - Authentication and Security: User authentication and data security are handled through Spring Security with JWT authentication
+## License
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/yyYiran/flick-buddies/blob/readme/LICENSE) file for details.
+
