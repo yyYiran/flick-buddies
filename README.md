@@ -1,27 +1,20 @@
 # FlickBuddies
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
+Welcome to FlickBuddies, a web application for you to rate and discover movies while connecting with movie enthusiasts with similar tastes. This project uses Spring Boot 3.1.4 for backend and Angular 14.2.5 for the frontend to create a seamless and interactive movie reviewing and recommendation experience. 
 
-## Development server
+## Features
+- [x] **Search**: Search for movies by name
+- [x] **Movie Rating & Review:** Users can rate movies they've watched, providing personal insights into their preferences
+- [ ] **Movie Recommendations**: Based on user's interaction with movies, recommend similar movies
+- [ ] **User Connection**: Based on user's interaction with movies, connect user with other users who share similar movie tastes
+
+## Getting started
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Technologies Used
+- Spring Boot: The backend is powered by Spring Boot, offering a robust and scalable server-side framework.
+- Angular TypeScript: The frontend is built with Angular TypeScript, providing a dynamic and responsive user interface.
+- RESTful API: Communication between the frontend and backend is achieved through RESTful APIs. Source of movie data is [TMDB API](https://developer.themoviedb.org/docs/getting-started)
+- Database: Movie and user data are stored and managed in MySQL
+- Authentication and Security: User authentication and data security are handled through Spring Security with JWT authentication
