@@ -33,7 +33,7 @@ export class MovieSearchComponent implements OnInit {
     // submitButtonLabel: "Save",
     closeButtonLabel: "Cancel",
   }
-  gfg = 5;
+
 
   
   
@@ -84,6 +84,7 @@ export class MovieSearchComponent implements OnInit {
     console.log(m)
     this.modalConfig.title = `Review ${m.title}`;
     this.currentMovie = m; 
+    this.reset();
     this.modalComponent.open();
   }
 
@@ -122,21 +123,13 @@ export class MovieSearchComponent implements OnInit {
       });
     
     });
-    
 
-    // console.log(this.myReview);
-    
-    // Add this review
-    
-
-    
-
-    this.reset()
+    // this.reset()
     return this.modalComponent.close()
   }
 
   private reset(){
-    this.currentMovie = null;
+    // this.currentMovie = null;
     this.myReview.rating = null;
     this.myReview.review = null;
   }

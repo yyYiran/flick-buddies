@@ -41,9 +41,10 @@ export class ModalComponent implements OnInit{
   close() {
     // this.modalConfig.onSubmit();
     this.modalRef.close()
+    this.modalRef.result.then()
   }
 
-  dismiss() {
-    this.modalRef.dismiss()
-  }
+  // dismiss() {
+  //   this.modalRef.dismiss()
+  // }
 }

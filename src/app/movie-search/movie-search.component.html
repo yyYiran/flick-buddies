@@ -3,13 +3,15 @@
   <form #f="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="rating">My rating</label>
+        <!-- <br> -->
         <!-- <input type="number" id="rating"  class="form-control"/> -->
-        <input [(ngModel)]="myReview.rating" #rating="ngModel" type="number" name="rating" required>
+        <!-- <input [(ngModel)]="myReview.rating" #rating="ngModel" type="number" name="rating" required> -->
+        <ngb-rating class="form-control-lg" [max]=5 [(ngModel)]="myReview.rating" #rating="ngModel" type="number" name="rating" required></ngb-rating>
     </div>
     <div class="form-group">
         <label for="review">Review</label>
         <!-- <input type="text" id="review" class="form-control"/> -->
-        <input [(ngModel)]="myReview.review" #review="ngModel" name="review" required>
+        <input class="form-control" [(ngModel)]="myReview.review" #review="ngModel" name="review" required>
     </div>
     
     <div *ngIf="(rating.invalid && (rating.dirty || rating.touched)) || review.invalid && (review.dirty || review.touched)"
@@ -33,19 +35,25 @@
 
   <!-- <p>bcisdbciu</p> -->
   <ul>
-    <li class="card" *ngFor="let movie of movies$ | async" id="movie">
-      <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path">
-      <button class="btn btn-primary" (click)="openModal(this.movie)">
-        Watched
-       </button>
-      <div id="movieInfo" class="card-body">
-        <h4 class="card-title">
-          {{movie.title}}
-        </h4>
-        <span>{{movie.release_date}}</span>
-        <p class="card-text">{{movie.overview}}</p>
-        
+    <li *ngFor="let movie of movies$ | async" id="movie">
+      <img [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path">
+      
+      <div class="movieBody">
+        <div class="movieInfo">
+          <h4 >
+            {{movie.title}}
+          </h4>
+          <p>{{movie.release_date}}</p>
+          <!-- <p class="card-text">{{movie.overview}}</p> -->
+          
+        </div>
+        <button class="btn btn-primary" (click)="openModal(this.movie)">
+          Watched
+         </button>
       </div>
+      
+
+      
      
     </li>
   </ul>
