@@ -1,6 +1,6 @@
 # FlickBuddies
 
-Welcome to FlickBuddies, a web application for you to rate and discover movies while connecting with movie enthusiasts with similar tastes. This project uses Spring Boot 3.1.4 for backend and Angular 14.2.5 for the frontend to create a seamless and interactive movie reviewing and recommendation experience. 
+Welcome to FlickBuddies, a web application for you to rate and discover movies while connecting with movie enthusiasts with similar tastes. This project uses Spring Boot 3.1.4 for [backend](https://github.com/yyYiran/flick-buddies-backend) and Angular 14.2.5 for the frontend to create a seamless and interactive movie reviewing and recommendation experience. 
 
 ## Features
 - [x] **Search**: Search for movies by name
