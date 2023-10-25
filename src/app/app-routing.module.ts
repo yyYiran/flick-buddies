@@ -6,7 +6,6 @@ import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'home', component: MovieSearchComponent},
   {path: 'account', component: AccountComponent}
 ];
 

@@ -18,12 +18,17 @@ import { ReviewRequest } from '../model/review.request';
   styleUrls: ['./movie-search.component.css']
 })
 export class MovieSearchComponent implements OnInit {
+
   public movies$!: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
   currentMovie!: Movie|null
   public myReview: Review = {
     rating: null,
     review: null,
+  }
+
+  public onBlur() {
+    console.log("You are not center of universe")
   }
 
   @ViewChild('modal') private modalComponent!: ModalComponent;
@@ -56,24 +61,24 @@ export class MovieSearchComponent implements OnInit {
       // console.log(this.reviewForm.value);
       console.log(this.authService.currentUser())
       // console.log(this.authService.currentUser);
-      this.movies$ = this.movieService.searchByTitle("1984");
-      // this.movies$ = this.searchTerms.pipe(
-      //   // wait 300ms after each keystroke before considering the term
-      //   debounceTime(300),
+      // this.movies$ = this.movieService.searchByTitle("1984");
+      this.movies$ = this.searchTerms.pipe(
+        // wait 300ms after each keystroke before considering the term
+        debounceTime(300),
     
-      //   // ignore new term if same as previous term
-      //   distinctUntilChanged(),
+        // ignore new term if same as previous term
+        distinctUntilChanged(),
     
-      //   // switch to new search observable each time the term changes
-      //   switchMap((term: string) => this.movieService.searchByTitle(term).pipe(
-      //     catchError(error => {
-      //       // Handle the error here, e.g., log it or display an error message.
-      //       this.handleError(error)
-      //       // You can also return an empty observable or throw a new error if needed.
-      //       return of([]); // Replace with your error handling logic.
-      //     })
-      //   )),
-      // );
+        // switch to new search observable each time the term changes
+        switchMap((term: string) => this.movieService.searchByTitle(term).pipe(
+          catchError(error => {
+            // Handle the error here, e.g., log it or display an error message.
+            this.handleError(error)
+            // You can also return an empty observable or throw a new error if needed.
+            return of([]); // Replace with your error handling logic.
+          })
+        )),
+      );
     }
   // Push a search term into the observable stream.
   search(term: string): void {

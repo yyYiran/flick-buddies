@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 import { AccountComponent } from './account/account.component';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { AccountComponent } from './account/account.component';
     LoginComponent,
     ModalComponent,
     AccountComponent,
+    NavbarComponent,
   ],
   imports: [
     // MovieSearchComponent,
