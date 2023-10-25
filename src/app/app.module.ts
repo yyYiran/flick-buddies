@@ -12,6 +12,7 @@ import { ModalComponent } from './modal/modal.component';
 import { AccountComponent } from './account/account.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ModalComponent,
     AccountComponent,
     NavbarComponent,
+    HomeComponent,
   ],
   imports: [
     // MovieSearchComponent,
@@ -30,6 +32,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

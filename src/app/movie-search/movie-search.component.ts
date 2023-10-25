@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MovieService } from '../service/movie.service';
 import { Movie } from '../model/movie';
 import { Observable, Subject, catchError, debounceTime, distinctUntilChanged, map, of, switchMap, take, throwError } from 'rxjs';
@@ -19,17 +19,21 @@ import { ReviewRequest } from '../model/review.request';
 })
 export class MovieSearchComponent implements OnInit {
 
+  @ViewChild('searchBox', { static: true }) searchBox!: ElementRef;
   public movies$!: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
   currentMovie!: Movie|null
+  searching = false; 
+  focusOnList = true; 
   public myReview: Review = {
     rating: null,
     review: null,
   }
 
-  public onBlur() {
-    console.log("You are not center of universe")
-  }
+  // public onBlur() {
+  //   console.log("You are not center of universe")
+  //   this.searchBox.nativeElement.value = '';
+  // }
 
   @ViewChild('modal') private modalComponent!: ModalComponent;
   public modalConfig: ModalConfig = {
@@ -149,12 +153,12 @@ export class MovieSearchComponent implements OnInit {
     if (error.status == HttpStatusCode.Unauthorized){
       console.error("Unauthorized: ", error);
       alert("Your session expired. Please login. ")
-      setTimeout(()=>{this.router.navigateByUrl("");}, 200);
+      setTimeout(()=>{this.router.navigateByUrl("/login");}, 200);
       this.modalComponent.close()
     } else if (error.status == HttpStatusCode.Forbidden){
       console.error("Forbidden: ", error);
       alert("Your session expired. Please login. ")
-      setTimeout(()=>{this.router.navigateByUrl("");}, 200);
+      setTimeout(()=>{this.router.navigateByUrl("/login");}, 200);
       this.modalComponent.close()
     } 
     else {

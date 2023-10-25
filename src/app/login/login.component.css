@@ -1,16 +1,17 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 #container{
-  /* width: 100%;
+  width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0; */
+  bottom: 0;
   display: flex;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
+  background-color: #fff;
   /* align-items: center; */
 }
 
@@ -28,7 +29,7 @@ form .form-group{
   margin-bottom: 30px;
 }
 
-/* .btn-group{
+.btn-group{
   display: flex;
   gap: 10px;
-} */
+}

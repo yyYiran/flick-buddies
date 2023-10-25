@@ -29,23 +29,28 @@
   </form>
 </modal>
 
-<div id="search-component" >
-  
+<div id="search-component">
 
-<input #searchBox (input)="search(searchBox.value)" placeholder="Search"/>
+<div id="searchBar">
+  <i *ngIf="searchBox.value" class="fa-solid fa-xmark" (click)="searchBox.value=''"></i>
+  <input #searchBox (click)="search(searchBox.value)" (input)="search(searchBox.value)" 
+  placeholder="Search" (focus)="searching = true" (blur)="searching=false">
+  
+</div>
 
 <!-- <input #searchBox (input)="search(searchBox.value)"> -->
 
   <!-- <p>bcisdbciu</p> -->
-  <ul>
+  
+  <ul *ngIf="searchBox.value && (searching || focusOnList)" (mouseenter)="focusOnList=true" (mouseleave)="focusOnList=false" tabindex="-1" (focus)="focusOnList=true">
     <li *ngFor="let movie of movies$ | async" id="movie">
       <img [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path">
       
       <div class="movieBody">
         <div class="movieInfo">
-          <h4 >
+          <h5 >
             {{movie.title}}
-          </h4>
+          </h5>
           <p>{{movie.release_date}}</p>
           <!-- <p class="card-text">{{movie.overview}}</p> -->
           
