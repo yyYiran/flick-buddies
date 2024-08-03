@@ -3,10 +3,10 @@
 Welcome to FlickBuddies, a web application for you to rate and discover movies while connecting with movie enthusiasts with similar tastes. This project uses Spring Boot 3.1.4 for [backend](https://github.com/yyYiran/flick-buddies-backend) and Angular 14.2.5 for the frontend to create a seamless and interactive movie reviewing and recommendation experience. 
 
 ## Features
-- [x] **Search**: Search for movies by name
-- [x] **Movie Rating & Review:** Users can rate movies they've watched, providing personal insights into their preferences
-- [ ] **Movie Recommendations**: Based on user's interaction with movies, recommend similar movies
-- [ ] **User Connection**: Based on user's interaction with movies, connect user with other users who share similar movie tastes
+- **Search**: Search for movies by name
+- **Movie Rating & Review:** Users can rate movies they've watched, providing personal insights into their preferences
+- **Movie Recommendations**: Based on user's interaction with movies, recommend similar movies
+- **User Connection**: Based on user's interaction with movies, connect user with other users who share similar movie tastes
 
 ## Getting started
 
