@@ -20,7 +20,12 @@ export class AuthService {
   constructor(private http: HttpClient) {    }
 
   public currentUser(){
-    return jwtDecode<jwt>(localStorage.getItem("token")+'').sub;
+    const token = localStorage.getItem("token")+''
+    try {
+      return jwtDecode<jwt>(token).sub;
+    } catch(error){
+      return ''
+    }
     
   }
 

@@ -1,28 +1,57 @@
-<div id="container">
-
-    <form [formGroup]="loginForm">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" formControlName="username" class="form-control"/>
-            <!-- <div *ngIf="form.username.errors" class="invalid-feedback">
+<div class="container d-flex row justify-content-center">
+  <form #loginForm="ngForm" class="row g-3 w-75">
+    <div class="form-group">
+      <label class="form-label" for="username">Username</label>
+      <input
+        class="form-control w-100"
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+      />
+      <!-- <div *ngIf="form.username.errors" class="invalid-feedback">
                 <div *ngIf="form.username.errors.required">Username is required</div>
             </div> -->
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" formControlName="password" class="form-control"/>
-            <!-- <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input
+        class="form-control"
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+      />
+      <!-- <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
                 <div *ngIf="form.password.errors.required">Password is required</div>
             </div> -->
-        </div>
-        <div class="form-group btn-group">
-            <button class="btn btn-primary" (click)="onSignin()">
-                <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
-                Sign in
-            </button>
-            <button class="btn btn-outline-primary" (click)="onSignup()">
-              Sign up
-          </button>
-        </div>
-    </form>
+    </div>
+    <div class="form-group btn-group column-gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary rounded"
+        (click)="onSignin()"
+        [disabled]="!loginForm.form.valid"
+      >
+        <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+        Sign in
+      </button>
+      <button
+        type="submit"
+        class="btn btn-outline-primary rounded"
+        (click)="onSignup()"
+        [disabled]="!loginForm.form.valid"
+      >
+        Sign up
+      </button>
+    </div>
+    <p class="mt-2 text-danger" *ngIf="message !== 'Success'">
+      {{ message }}
+    </p>
+    <p class="mt-2 text-success" *ngIf="message === 'Success'">
+      {{ message }}
+    </p>
+  </form>
 </div>

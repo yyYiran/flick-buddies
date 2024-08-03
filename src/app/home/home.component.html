@@ -1,1 +1,29 @@
-<p>home works!</p>
+<!-- <h2>From your watchlist</h2> -->
+<app-movie-search></app-movie-search>
+<h2>You might also like</h2>
+<ul>
+  <div
+    class="overflow-hidden"
+    *ngFor="let movie of recMovies$ | async"
+    id="movie"
+  >
+    <app-movie-item
+      [movie]="movie"
+      classNames="home-movie-item"
+      (openModal)="onOpenModal(movie)"
+    ></app-movie-item>
+    <!-- <img
+      class="card-img-top"
+      [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path"
+    />
+
+    <div class="card-body">
+      <div class="movieInfo">
+        <h5 class="card-title">
+          {{ movie.title }}
+        </h5>
+        <p class="card-subtitle mb-2">{{ movie.release_date }}</p>
+      </div>
+    </div> -->
+  </div>
+</ul>

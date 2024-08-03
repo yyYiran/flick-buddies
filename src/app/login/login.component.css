@@ -1,35 +1,7 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
-
-#container{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  z-index: 2;
-  background-color: #fff;
-  /* align-items: center; */
+.container {
+  padding-top: 20%;
 }
 
-form {
-  width: 80%;
-  max-width: 300px;
-  margin-top: 50px;
-}
-
-form input{
-  border: 1px solid gray;
-}
-
-form .form-group{
-  margin-bottom: 30px;
-}
-
-.btn-group{
-  display: flex;
-  gap: 10px;
+.text-success {
+  color: green;
 }

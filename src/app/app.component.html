@@ -1,5 +1,6 @@
 <!-- <app-movie-search></app-movie-search>
 <app-login></app-login> -->
 <!-- <ngb-rating [(rate)]="currentRate"></ngb-rating> -->
-<app-navbar></app-navbar>
+<app-navbar *ngIf="router.url !== '/login'"></app-navbar>
 <router-outlet></router-outlet>
+<!-- <app-movie-item></app-movie-item> -->

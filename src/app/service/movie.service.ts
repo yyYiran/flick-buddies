@@ -10,7 +10,9 @@ import { ReviewRequest } from '../model/review.request';
   providedIn: 'root'
 })
 export class MovieService {
+  
   private apiUrl = `${environment.apiUrl}/movie`;
+  // private addedMovies: Set<number> = new Set();
   
   constructor(private http: HttpClient) { }
 
@@ -24,6 +26,13 @@ export class MovieService {
     const requestOptions = { headers: headers };
     return this.http.post<Movie>(this.apiUrl, movie, requestOptions);
   }
+
+  // addMovieId(movieId: number): void {
+  //   this.addedMovies.add(movieId)
+  // }
+
+  
+  
 
   public addReview(request: ReviewRequest): Observable<Review>{
     console.log("add review called with request: ");

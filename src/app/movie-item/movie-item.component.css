@@ -1,0 +1,17 @@
+.home-movie-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-movie-item #overview {
+  display: none;
+}
+
+.search-movie-item img {
+  width: 25%;
+  margin-right: 1rem;
+}
+
+.search-movie-item .movie-body {
+  padding: 5px;
+}

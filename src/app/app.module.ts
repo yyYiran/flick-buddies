@@ -13,7 +13,8 @@ import { AccountComponent } from './account/account.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-
+import { MovieDetailsComponent } from './movie.details/movie.details.component';
+import { MovieItemComponent } from './movie-item/movie-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,8 @@ import { HomeComponent } from './home/home.component';
     AccountComponent,
     NavbarComponent,
     HomeComponent,
+    MovieDetailsComponent,
+    MovieItemComponent,
   ],
   imports: [
     // MovieSearchComponent,

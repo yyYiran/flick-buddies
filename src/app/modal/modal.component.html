@@ -1,4 +1,4 @@
-<ng-template #modal>
+<!-- <ng-template #modal>
   <div class="modal-backdrop" (click)="close()"></div> 
   <div class="modal-header">
     <h5 class="modal-title">{{ modalConfig.title }}</h5>
@@ -12,21 +12,32 @@
             (click)="close()">
       {{ modalConfig.closeButtonLabel }}
     </button>
-  </div>
+  </div>  
+</ng-template> -->
 
-
-  <!-- <div class="modal {{ modalConfig.size }}" >
-    <h4 class="modal-header">
-      {{ modalConfig.title }}
-      <span class="modal-close" (click)="dismiss()">✕</span>
-    </h4>
+<div  id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
-      <ng-content></ng-content>
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalLabel">Write a Review for {{movie.title}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="onClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #reviewForm="ngForm">
+          <div class="form-group">
+            <label for="rating">Rating:</label>
+            <ngb-rating class="form-control" name="rating" id="rating" type="number" [max]=5 [(ngModel)]="review.rating" required>
+            </ngb-rating>
+          </div>
+          <div class="form-group">
+            <label for="reviewText">Review:</label>
+            <textarea class="form-control" name="review" id="review" rows="5" [(ngModel)]="review.review" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid" (click)="onSubmit()">Submit Review</button>
+        </form>
+      </div>
     </div>
-    <div class="modal-footer">
-      <button (click)="dismiss()">{{ modalConfig.closeButtonLabel }}</button>
-    </div>
-  </div>-->
-  
-  
-</ng-template>
+  </div>
+</div>

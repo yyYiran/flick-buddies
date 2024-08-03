@@ -3,5 +3,5 @@ export interface Review{
   // movieId: number,
   rating: number|null,
   review: string|null,
-  // status: number
+  status?: number
 }

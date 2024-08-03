@@ -1,0 +1,13 @@
+:host {
+  --color-card-bg: #1a1a1a;
+  --color-card-text: white;
+  --color-card-sub-text: #ffffffb3;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-left: 5%;
+  padding-right: 5%;
+  gap: 5px;
+}

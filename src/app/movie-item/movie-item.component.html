@@ -1,0 +1,27 @@
+<!-- class="list-group-item  d-flex justify-content-between align-items-center" -->
+<li [ngClass]="classNames" class="" id="movie">
+  <img [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path" />
+
+  <div class="movie-body">
+    <div class="movie-info">
+      <h5>
+        {{ movie.title }}
+      </h5>
+      <p class="mb-2">{{ movie.release_date }}</p>
+      <p class="mb-2" id="overview">{{ movie.overview }}</p>
+    </div>
+    <button
+      *ngIf="!isMovieAdded(this.movie.movie_code)"
+      class="btn btn-primary"
+      (click)="openModalClick()"
+    >
+      + Watched
+    </button>
+    <button
+      *ngIf="isMovieAdded(this.movie.movie_code)"
+      class="btn btn-outline-primary"
+    >
+      √ In watchlist
+    </button>
+  </div>
+</li>
